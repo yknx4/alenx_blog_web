@@ -7,8 +7,6 @@ class Index extends PureComponent {
   render() {
     const post = this.props.post;
     const post_attributes = post.attributes;
-    console.log(post_attributes);
-    console.log(new Date(post_attributes['inserted-at']));
     return (
       <article>
         <h1 className="article-title"><a href={post.links.self}>{post_attributes.title}</a></h1>

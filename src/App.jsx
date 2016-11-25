@@ -1,9 +1,8 @@
 import React from 'react'
 import PureComponent from './components/PureComponent'
-import PostsIndex from './containers/Index'
-import Helmet from "react-helmet";
-import Settings from './blog_settings.json'
+import Index from './containers/Index'
 import ThemeColor from './components/ThemeColor'
+import Header from './components/Header'
 import './App.css';
 
 class App extends PureComponent {
@@ -14,8 +13,8 @@ class App extends PureComponent {
     return (
       <div className="App">
         <ThemeColor name="white"/>
-        <Helmet title={Settings.title}/>
-        <PostsIndex posts={this.posts()}/>
+        <Header />
+        <Index posts={this.posts()}/>
       </div>
     );
   }
