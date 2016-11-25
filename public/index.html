@@ -1,9 +1,15 @@
 <!doctype html>
 <html lang="en">
+<!-- TODO: Use dynamic language code -->
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+      <link rel="shortcut icon" href="%PUBLIC_URL%/assets/favicon.ico">
+      <link rel="stylesheet" href="%PUBLIC_URL%/css/slender-base.css">
+      <link rel="stylesheet" href="%PUBLIC_URL%/css/slender-color-schemes.css">
+      <link rel="stylesheet" href="%PUBLIC_URL%/css/font-awesome-4.5.0.min.css">
+      <link rel="stylesheet" href="%PUBLIC_URL%/css/highlight-9.0.0-default.min.css">
+      <link rel="stylesheet" href="%PUBLIC_URL%/css/custom.css">
     <!--
       Notice the use of %PUBLIC_URL% in the tag above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -15,8 +21,26 @@
     -->
     <title>React App</title>
   </head>
-  <body>
-    <div id="root"></div>
+  <body class="color-scheme-white">
+      <script>
+          window.fbAsyncInit = function() {
+              FB.init({
+                  appId      : '1672123799707864',
+                  xfbml      : true,
+                  version    : 'v2.5'
+              });
+          };
+
+          (function(d, s, id){
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) {return;}
+              js = d.createElement(s); js.id = id;
+              js.src = "//connect.facebook.net/en_US/sdk.js";
+              fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+      </script>
+  <!-- TODO: Use dynamic style for body -->
+    <div id="container"></div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -27,5 +51,7 @@
       To begin the development, run `npm start`.
       To create a production bundle, use `npm run build`.
     -->
+      <script src="%PUBLIC_URL%/js/highlight-9.0.0.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script>
   </body>
 </html>
