@@ -18,6 +18,9 @@
     "page": "/:title/",
     "post": "/article/:title/"
   },
+  "Theme": {
+    "colorScheme": "white"
+  },
   "params": {
     "subtitle": "4",
     "colorscheme": "white",
