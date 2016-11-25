@@ -1,6 +1,6 @@
 import React from 'react'
 import PureComponent from './components/PureComponent'
-import PostsIndex from './containers/PostsIndex'
+import PostsIndex from './containers/Index'
 import Helmet from "react-helmet";
 import Settings from './blog_settings.json'
 import ThemeColor from './components/ThemeColor'

@@ -5,7 +5,7 @@ chai.use(chaiImmutable);
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Post from './Post';
+import Post from './IndexPost';
 import {
   renderIntoDocument,
   scryRenderedDOMComponentsWithTag
