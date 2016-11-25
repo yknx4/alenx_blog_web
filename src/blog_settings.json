@@ -1,6 +1,8 @@
 {
   "baseurl": "//yknx4.github.io/blog",
   "title": "[ Y k N x ]",
+  "subtitle": "4",
+  "tagline": "<bold>Life</bold><small>Thoughts, </small><bold>Social</bold><small>Criticism</small><small>, and some </small><bold>Software</bold><small>Development</small>",
   "languageCode": "en-US",
   "MetaDataFormat": "toml",
   "theme": "slender",
@@ -35,13 +37,58 @@
     "facebook": "//www.facebook.com/yknx4",
     "ganalytics": "UA-74724455-1"
   },
-  "menu": {},
-  "[menu": {
-    "main": {
-      "identifier": "pro",
-      "name": "pro",
-      "url": "https://yknx4.github.io",
-      "weight": 5
+  "badges": [
+    {
+      "id": "github",
+      "url": "//www.github.com/yknx4",
+      "fa-class": "fa-github"
+    },
+    {
+      "id": "email",
+      "url": "mailto:yknx.4.b+contact@gmail.com",
+      "fa-class": "fa-envelope"
+    },
+    {
+      "id": "twitter",
+      "url": "//twitter.com/yknx4",
+      "fa-class": "fa-twitter"
+    },
+    {
+      "id": "linkedin",
+      "url": "//mx.linkedin.com/in/yknx4",
+      "fa-class": "fa-linkedin"
+    },
+    {
+      "id": "facebook",
+      "url": "//www.facebook.com/yknx4",
+      "fa-class": "fa fa-facebook"
     }
-  }
+  ],
+  "menu": [
+    {
+      "id": "home",
+      "name": "home",
+      "url": "/blog"
+    },
+    {
+      "id": "categories",
+      "name": "categories",
+      "url": "categories/"
+    },
+    {
+      "id": "tags",
+      "name": "tags",
+      "url": "tags/"
+    },
+    {
+      "id": "about",
+      "name": "about",
+      "url": "about/"
+    },
+    {
+      "id": "pro",
+      "name": "pro",
+      "url": "https://yknx4.github.io"
+    }
+  ]
 }
