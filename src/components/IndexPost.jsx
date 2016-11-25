@@ -1,13 +1,30 @@
 import React from 'react'
 import PureComponent from './PureComponent'
+import readingTime from 'reading-time'
 
 class Post extends PureComponent {
   render() {
     const post = this.props.post;
+    const post_attributes = post.attributes;
     return (
-      <div className="post">
-        <p>{ post.attributes.title }</p>
-      </div>
+      <article>
+        <h1 className="article-title"><a href="{post.links.self}">{post_attributes.title}</a></h1>
+        <p className="article-info">
+          on <strong>{post_attributes.inserted_at}</strong> by <strong>Placeholder Author</strong>
+          &middot;
+          <span className="f-post-tags"><a href="/tags"><i className="fa fa-tag"></i></a>
+            { post_attributes['tag-ids'].map( tag_id =>
+              <a key={tag_id} href={`/tags/${tag_id}`}>{tag_id}</a>,
+            )}
+          </span>
+          &middot; <strong>{ readingTime(post_attributes.body).text } reading time</strong>
+        </p>
+        <p className="article-summary">{ post_attributes.excerpt }</p>
+        { post_attributes.excerpt !== post_attributes.body &&
+          <a href={post.links.self}><p className="article-read-more">Read more &rarr;</p></a>
+        }
+
+      </article>
     );
   }
 }
