@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react'
+import PureComponent from './PureComponent'
 import PostsIndex from './PostsIndex'
 import Helmet from "react-helmet";
 import Settings from './blog_settings.json'
 import ThemeColor from './components/ThemeColor'
 import './App.css';
 
-class App extends Component {
+class App extends PureComponent {
   posts() {
     return require('./test_posts.json').data
   }

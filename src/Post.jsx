@@ -1,6 +1,7 @@
-import React from 'react';
+import React from 'react'
+import PureComponent from './PureComponent'
 
-class Post extends React.Component {
+class Post extends PureComponent {
   render() {
     const post = this.props.post;
     return (
