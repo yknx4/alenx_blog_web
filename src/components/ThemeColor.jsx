@@ -1,18 +1,20 @@
 import React from 'react'
+import PureComponent from '../PureComponent'
 
-class ThemeColor extends React.Component {
-  colorTheme(name) {
-    return `color-scheme-${name || this.props.name || 'white'}`;
+class ThemeColor extends PureComponent {
+  colorScheme(props) {
+    props = props || this.props;
+    return `color-scheme-${props.name}`;
   }
   componentDidMount() {
-    document.body.classList.add(this.colorTheme(nextProps.name));
+    document.body.classList.add(this.colorScheme());
   }
   componentWillReceiveProps(nextProps) {
-    document.body.classList.remove(this.colorTheme());
-    document.body.classList.add(this.colorTheme(nextProps && nextProps.name));
+    document.body.classList.remove(this.colorScheme());
+    document.body.classList.add(this.colorScheme(nextProps));
   }
   componentWillUnmount() {
-    document.body.classList.remove(this.colorTheme());
+    document.body.classList.remove(this.colorScheme());
   }
   render() {
     return null;
