@@ -8,7 +8,7 @@ class Post extends PureComponent {
     const post_attributes = post.attributes;
     return (
       <article>
-        <h1 className="article-title"><a href="{post.links.self}">{post_attributes.title}</a></h1>
+        <h1 className="article-title"><a href={post.links.self}>{post_attributes.title}</a></h1>
         <p className="article-info">
           on <strong>{post_attributes.inserted_at}</strong> by <strong>Placeholder Author</strong>
           &middot;
