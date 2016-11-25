@@ -11,7 +11,7 @@ class App extends PureComponent {
   }
   render() {
     return (
-      <div className="App">
+      <div className="container">
         <ThemeColor name="white"/>
         <Header />
         <Index posts={this.posts()}/>
