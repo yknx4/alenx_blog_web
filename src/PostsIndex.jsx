@@ -1,4 +1,5 @@
 import React from 'react';
+import Post from './Post';
 
 export default React.createClass({
   getPosts: function() {
@@ -7,9 +8,7 @@ export default React.createClass({
   render: function() {
     return <div className="index">
       {this.getPosts().map(post =>
-        <div className="post" key="{post.id}">
-          <p>{ post.title }</p>
-        </div>
+        <Post key={post.id} post={post} />
       )}
     </div>;
   }
