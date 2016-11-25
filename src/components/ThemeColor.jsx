@@ -1,6 +1,6 @@
 // eslint-disable-next-line
 import React from 'react'
-import PureComponent from '../PureComponent'
+import PureComponent from './PureComponent'
 
 class ThemeColor extends PureComponent {
   colorScheme(props) {

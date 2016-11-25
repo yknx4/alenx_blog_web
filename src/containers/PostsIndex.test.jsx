@@ -12,7 +12,7 @@ import {
 } from 'react-addons-test-utils';
 
 it('renders without crashing', () => {
-  const posts = require('./test_posts.json').data;
+  const posts = require('./../test_posts.json').data;
   const element = renderIntoDocument(
     <PostsIndex posts={posts}/>
   );
