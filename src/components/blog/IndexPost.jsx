@@ -1,7 +1,7 @@
 import React from 'react'
-import PureComponent from './PureComponent'
+import PureComponent from '../PureComponent'
 import readingTime from 'reading-time'
-import {formatDate} from '../code/Utils'
+import {formatDate} from '../../code/Utils'
 
 class Index extends PureComponent {
   render() {

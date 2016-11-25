@@ -1,6 +1,6 @@
 import React from 'react';
-import Post from '../components/IndexPost';
-import PureComponent from '../components/PureComponent'
+import Post from './IndexPost';
+import PureComponent from '../PureComponent'
 
 class Index extends PureComponent {
   getPosts() {

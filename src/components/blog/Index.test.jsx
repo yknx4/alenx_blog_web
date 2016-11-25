@@ -4,17 +4,20 @@ import chaiImmutable from 'chai-immutable';
 chai.use(chaiImmutable);
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import IndexPost from './IndexPost';
+import Index from './Index';
 import {
   renderIntoDocument,
   scryRenderedDOMComponentsWithTag
 } from 'react-addons-test-utils';
+import posts from '../../test_posts.json'
 
 it('renders without crashing', () => {
-  const post = require('./../test_posts.json').data[0];
   const element = renderIntoDocument(
-    <IndexPost post={post}/>
+    <Index posts={posts.data}/>
   );
+
+  const articles = scryRenderedDOMComponentsWithTag(element, 'article');
+
+  expect(articles.length).to.equal(posts.data.length);
 });
 
