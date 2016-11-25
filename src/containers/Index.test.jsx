@@ -16,7 +16,6 @@ it('renders without crashing', () => {
     <Index posts={posts.data}/>
   );
 
-  const divs = scryRenderedDOMComponentsWithTag(element, 'div');
   const articles = scryRenderedDOMComponentsWithTag(element, 'article');
 
   expect(articles.length).to.equal(posts.data.length);
