@@ -3,7 +3,7 @@ import PureComponent from './PureComponent'
 import readingTime from 'reading-time'
 import {formatDate} from '../code/Utils'
 
-class Post extends PureComponent {
+class Index extends PureComponent {
   render() {
     const post = this.props.post;
     const post_attributes = post.attributes;
@@ -32,4 +32,4 @@ class Post extends PureComponent {
   }
 }
 
-export default Post;
+export default Index;

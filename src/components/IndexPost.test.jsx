@@ -5,7 +5,7 @@ chai.use(chaiImmutable);
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Post from './IndexPost';
+import IndexPost from './IndexPost';
 import {
   renderIntoDocument,
   scryRenderedDOMComponentsWithTag
@@ -14,7 +14,7 @@ import {
 it('renders without crashing', () => {
   const post = require('./../test_posts.json').data[0];
   const element = renderIntoDocument(
-    <Post post={post}/>
+    <IndexPost post={post}/>
   );
 });
 

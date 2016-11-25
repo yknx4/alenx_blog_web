@@ -5,7 +5,7 @@ chai.use(chaiImmutable);
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PostsIndex from './Index';
+import Index from './Index';
 import {
   renderIntoDocument,
   scryRenderedDOMComponentsWithTag
@@ -14,7 +14,7 @@ import {
 it('renders without crashing', () => {
   const posts = require('./../test_posts.json').data;
   const element = renderIntoDocument(
-    <PostsIndex posts={posts}/>
+    <Index posts={posts}/>
   );
 
   const divs = scryRenderedDOMComponentsWithTag(element, 'div');
