@@ -24,14 +24,12 @@ class Title extends PureComponent {
   }
 
   get postTitle() {
-    return (
-      <span>
-        {this.pageTitle}
-        <aside>
-          <p>on <strong>{this.date}</strong></p>
-        </aside>
-      </span>
-    );
+    return ([
+      this.pageTitle,
+      <aside>
+        <p>on <strong>{this.date}</strong></p>
+      </aside>
+    ]);
   }
 
   get mainTitle() {
