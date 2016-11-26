@@ -13,7 +13,11 @@ class PureComponent extends React.Component {
   }
 
   property(name, defaultValue="") {
-    Object.defineProperty(this, name, { get: function () { return this.fetch(name, defaultValue) } });
+    console.log(`Defining property ${name} with default of type ${typeof defaultValue}`)
+    Object.defineProperty(this, name, { get: function () {
+      const finalDefaultValue = typeof defaultValue === 'function' ? new defaultValue() : defaultValue;
+      return this.fetch(name, finalDefaultValue);
+    } });
   }
 
   properties(properties) {

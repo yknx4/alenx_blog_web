@@ -28,12 +28,12 @@ it('defines a property', () => {
 it('defines many properties', () => {
   const component = new PureComponent({awesome: "me!", noob: "you!"});
   component.properties({
-    awesome: "",
-    noob: "",
-    invalid: 1
+    awesome: String,
+    noob: String,
+    invalid: Array
   });
 
   expect(component.awesome).to.equal("me!");
   expect(component.noob).to.equal("you!");
-  expect(component.invalid).to.equal(1);
+  expect(component.invalid instanceof Array).to.equal(true);
 });
