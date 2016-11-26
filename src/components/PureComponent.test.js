@@ -37,3 +37,20 @@ it('defines many properties', () => {
   expect(component.noob).to.equal("you!");
   expect(component.invalid instanceof Array).to.equal(true);
 });
+
+class InheritedComponent extends PureComponent{
+  constructor(props) {
+    super(props);
+    this.properties({
+      awesome: String,
+      noob: String,
+      invalid: Array
+    });
+  }
+}
+
+it('defines a property with class definition', () => {
+  const component = new InheritedComponent({awesome: "me!", noob: "you!"});
+  expect(component.awesome).to.equal("me!");
+  expect(component.noob).to.equal("you!");
+});
