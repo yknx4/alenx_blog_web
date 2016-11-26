@@ -2,6 +2,7 @@ import React from 'react';
 import Post from './IndexPost';
 import PureComponent from '../PureComponent'
 import Pagination from '../Pagination'
+import {connect} from 'react-redux';
 
 class Index extends PureComponent {
   get posts() {
@@ -22,4 +23,14 @@ class Index extends PureComponent {
   }
 }
 
-export default Index;
+function mapStateToProps(state) {
+  return {
+    posts: state.get('posts'),
+    pages: state.get('pages')
+  };
+}
+
+const ConnectedIndex = connect(mapStateToProps)(Index);
+
+export default ConnectedIndex
+export {Index}
