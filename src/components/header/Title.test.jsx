@@ -4,7 +4,7 @@ import chaiImmutable from 'chai-immutable';
 chai.use(chaiImmutable);
 
 import React from 'react';
-import Title from './Title';
+import {Title} from './Title';
 import {
   renderIntoDocument,
 } from 'react-addons-test-utils';

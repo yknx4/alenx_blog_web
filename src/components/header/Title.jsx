@@ -1,6 +1,8 @@
 import React from 'react'
 import PureComponent from '../PureComponent'
+import Badge from '../Badge'
 import _ from 'lodash'
+import {connect} from 'react-redux';
 
 const MAIN_TYPE = "main"
 const POST_TYPE = "post"
@@ -65,4 +67,17 @@ class Title extends PureComponent {
   }
 }
 
-export default Title;
+function mapStateToProps(state) {
+  const settings = state.get('settings')
+  return {
+    title: settings.get("title"),
+    subtitle: settings.get("subtitle"),
+    tagline: settings.get("tagline"),
+    badges: settings.get("badges"),
+    date: state.getIn(['post', 'date']),
+    type: state.getIn(['post', 'type'])
+  };
+}
+const ConnectedTitle = connect(mapStateToProps)(Title);
+export {Title}
+export default ConnectedTitle

@@ -3,6 +3,7 @@ import PureComponent from './PureComponent'
 import Settings from '../blog_settings.json'
 import Helmet from 'react-helmet'
 import Badge from './Badge'
+import Title from './header/Title'
 
 class Header extends PureComponent {
   title() {
@@ -19,17 +20,9 @@ class Header extends PureComponent {
               )}
             </ul>
           </nav>
-          <h1 className="brand">{Settings.title}<small>{Settings.subtitle}</small></h1>
-          <aside>
-            <p dangerouslySetInnerHTML={{__html: Settings.tagline}} />
-            <p>
-              { Settings.badges.map(badge =>
-                <Badge key={badge.id} badge={badge}/>
-              )}
-            </p>
-          </aside>
+          <Title />
         </header>
-    ); //TODO: Refactor title to multiple titles based on content
+    );
   }
 }
 
