@@ -4,7 +4,7 @@ import chaiImmutable from 'chai-immutable';
 chai.use(chaiImmutable);
 
 import React from 'react';
-import Index from './Index';
+import {Index} from './Index';
 import {
   renderIntoDocument,
   scryRenderedDOMComponentsWithTag
@@ -20,4 +20,3 @@ it('renders without crashing', () => {
 
   expect(articles.length).to.equal(posts.data.length);
 });
-
