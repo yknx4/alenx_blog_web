@@ -1,8 +1,10 @@
 import React from 'react'
 import PureComponent from '../PureComponent'
 import Badge from '../Badge'
+import Wrapper from '../Wrapper'
 import _ from 'lodash'
 import {connect} from 'react-redux';
+import {formatDate} from '../../code/Utils'
 
 const MAIN_TYPE = "main"
 const POST_TYPE = "post"
@@ -16,7 +18,7 @@ class Title extends PureComponent {
       subtitle: String,
       tagline: String,
       badges: Array,
-      date: String,
+      date: Date,
       type: MAIN_TYPE
     });
   }
@@ -26,17 +28,19 @@ class Title extends PureComponent {
   }
 
   get postTitle() {
-    return ([
-      this.pageTitle,
-      <aside>
-        <p>on <strong>{this.date}</strong></p>
-      </aside>
-    ]);
+    return (
+      <Wrapper>
+        {this.pageTitle}
+        <aside>
+          <p>on <strong>{formatDate(this.date)}</strong></p>
+        </aside>
+      </Wrapper>
+    );
   }
 
   get mainTitle() {
     return(
-      <span>
+      <Wrapper>
         <h1 className="brand">{this.title}<small>{this.subtitle}</small></h1>
         <aside>
           <p dangerouslySetInnerHTML={{__html: this.tagline}} />
@@ -46,7 +50,7 @@ class Title extends PureComponent {
             )}
           </p>
         </aside>
-      </span>
+      </Wrapper>
     );
   }
 
