@@ -4,8 +4,15 @@ import readingTime from 'reading-time'
 import {formatDate} from '../../code/Utils'
 
 class IndexPost extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.property('post', {attributes: {}})
+  }
+  hasReadMore() {
+    return this.post.attributes.excerpt !== this.post.attributes.body;
+  }
   render() {
-    const post = this.props.post;
+    const post = this.post;
     const post_attributes = post.attributes;
     return (
       <article>
@@ -15,13 +22,13 @@ class IndexPost extends PureComponent {
           &middot;
           <span className="f-post-tags"><a href="/tags"><i className="fa fa-tag"></i></a>
             { post_attributes['tag-ids'].map( tag_id =>
-              <a key={tag_id} href={`/tags/${tag_id}`}>{tag_id}, </a>
+              <a className='post-tag' key={tag_id} href={`/tags/${tag_id}`}>{tag_id}, </a>
             )}
           </span>
           &middot; <strong>{ readingTime(post_attributes.body).text } reading time</strong>
         </p>
         <p className="article-summary">{ post_attributes.excerpt }</p>
-        { post_attributes.excerpt !== post_attributes.body &&
+        { this.hasReadMore() &&
           <a href={post.links.self}><p className="article-read-more">Read more &rarr;</p></a>
         }
 
