@@ -6,6 +6,7 @@
   "languageCode": "en-US",
   "MetaDataFormat": "toml",
   "theme": "slender",
+  "themeColor": "white",
   "paginate": 3,
   "PaginatePath": "/",
   "canonifyurls": true,

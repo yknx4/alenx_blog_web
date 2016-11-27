@@ -25,12 +25,24 @@ store.dispatch({
 });
 
 class App extends PureComponent {
+  get settings() {
+    return store.getState().get('settings') || new Map();
+  }
+  get themeColor() {
+    return this.settings.get('themeColor') || "white";
+  }
+  get menu() {
+    return this.settings.get('menu') || []
+  }
+  get title() {
+    return this.settings.get('title') || "No Title"
+  }
   render() {
     return (
       <Provider store={store}>
         <div className="container">
-          <ThemeColor name="white"/>
-          <Header menu={Settings.menu} title={Settings.title}/>
+          <ThemeColor name={this.themeColor}/>
+          <Header menu={this.menu} title={this.title}/>
           <Index />
         </div>
       </Provider>
