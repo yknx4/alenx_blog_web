@@ -5,11 +5,12 @@ import Pagination from '../Pagination'
 import {connect} from 'react-redux';
 
 class Index extends PureComponent {
-  get posts() {
-    return this.props.posts || [];
-  }
-  get pages() {
-    return this.props.pages || [];
+  constructor(props) {
+    super(props);
+    this.properties({
+      posts: Array,
+      pages: Array
+    });
   }
   render() {
     return (
