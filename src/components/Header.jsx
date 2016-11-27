@@ -1,21 +1,25 @@
 import React from 'react'
 import PureComponent from './PureComponent'
-import Settings from '../blog_settings.json'
 import Helmet from 'react-helmet'
-import Badge from './Badge'
 import Title from './header/Title'
+import {Map} from 'immutable'
+import {connect} from 'react-redux';
 
 class Header extends PureComponent {
-  title() {
-    return this.props.title || Settings.title
+  constructor(props) {
+    super(props);
+    this.properties({
+      menu: Array,
+      title: String
+    });
   }
   render() {
     return (
         <header>
-          <Helmet title={this.title()}/>
+          <Helmet title={this.title}/>
           <nav>
             <ul>
-              { Settings.menu.map(item =>
+              { this.menu.map(item =>
                 <li key={item.id}><a href={item.url}>{item.name}</a></li>
               )}
             </ul>
@@ -26,4 +30,15 @@ class Header extends PureComponent {
   }
 }
 
-export default Header;
+function mapStateToProps(state) {
+  const settings = state.get('settings');
+  const post = state.get('post') || new Map();
+  return {
+    title: post.get('title') || settings.get("title"),
+    menu: settings.get("menu")
+  };
+}
+const ConnectedHeader = connect(mapStateToProps)(Header);
+
+export default ConnectedHeader
+export {Header}

@@ -30,7 +30,7 @@ class App extends PureComponent {
       <Provider store={store}>
         <div className="container">
           <ThemeColor name="white"/>
-          <Header />
+          <Header menu={Settings.menu} title={Settings.title}/>
           <Index />
         </div>
       </Provider>
