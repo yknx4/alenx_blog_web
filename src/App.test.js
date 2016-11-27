@@ -1,12 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import {App} from './App';
+import Settings from './blog_settings.json'
 import { expect } from 'chai';
 import chai from 'chai';
 import chaiImmutable from 'chai-immutable';
 chai.use(chaiImmutable);
+import {
+  renderIntoDocument,
+  scryRenderedDOMComponentsWithTag,
+  createRenderer
+} from 'react-addons-test-utils';
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
+  const renderer = createRenderer();
+  renderer.render(<App title={Settings.title} menu={Settings.menu} themeColor={Settings.themeColor}/>);
+  const result = renderer.getRenderOutput();
 });
