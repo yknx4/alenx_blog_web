@@ -1,30 +1,39 @@
 import _ from 'lodash';
-function fetch(_this, propName, defaultValue="") {
-  return _this.props[propName] || defaultValue;
+
+function _fetch(_this, field, propName, defaultValue = "") {
+  if(_.isUndefined(_this[field])) {
+    console.warn(`The object do not contain property "${field}"`);
+    // console.log(_this);
+    return defaultValue;
+  }
+  return _this[field][propName] || defaultValue;
 }
 
-function property(_this, name, defaultValue="") {
+function _property(_this, functionName, name, defaultValue="") {
   // console.log(`Defining property ${name} with default of type ${typeof defaultValue}`)
   Object.defineProperty(_this, name, {
     get: () => {
       const finalDefaultValue = typeof defaultValue === 'function' ? new defaultValue() : defaultValue;
-      return _this.fetch(name, finalDefaultValue);
+      return _this[functionName](name, finalDefaultValue);
     },
     enumerable: true
   });
 }
 
-function properties(_this, properties) {
+function _properties(_this, functionName, properties) {
   _.forEach(properties, (value, key) => {
-    _this.property(key, value);
+    _this[functionName](key, value);
   });
 }
 
 function enablePropertyAccesor(object) {
   const mixin = {
-    fetch: fetch.bind(object, object),
-    property: property.bind(object, object),
-    properties: properties.bind(object, object)
+    fetch: _fetch.bind(object, object, 'props'),
+    fetchParam: _fetch.bind(object, object.props, 'params'),
+    property: _property.bind(object, object, 'fetch'),
+    properties: _properties.bind(object, object, 'property'),
+    parameter: _property.bind(object, object, 'fetchParam'),
+    parameters: _properties.bind(object, object, 'parameter')
   };
   _.mixin(object, mixin);
 }
