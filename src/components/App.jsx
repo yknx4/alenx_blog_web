@@ -1,8 +1,8 @@
 import React from 'react'
-import PureComponent from './components/PureComponent'
-import Index from './components/blog/Index'
-import ThemeColor from './components/ThemeColor'
-import Header from './components/header/Header'
+import PureComponent from './PureComponent'
+import Index from './blog/Index'
+import ThemeColor from './ThemeColor'
+import Header from './header/Header'
 import {connect} from 'react-redux';
 
 class App extends PureComponent {

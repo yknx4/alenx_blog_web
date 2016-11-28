@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {App} from './App';
-import Settings from './blog_settings.json'
+import Settings from '../blog_settings.json'
 import { expect } from 'chai';
 import chai from 'chai';
 import chaiImmutable from 'chai-immutable';
