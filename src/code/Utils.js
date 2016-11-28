@@ -2,8 +2,8 @@
 function formatDate(date) {
   date = new Date(date);
   const options = {
-    weekday: "long", year: "numeric", month: "short",
-    day: "numeric"
+    weekday: 'long', year: 'numeric', month: 'short',
+    day: 'numeric',
   };
 
   return date.toLocaleDateString(navigatorLanguage(), options);
@@ -16,4 +16,4 @@ function navigatorLanguage() {
          navigator.userLanguage; // IE <= 10
 }
 
-export {formatDate, navigatorLanguage}
+export { formatDate, navigatorLanguage };

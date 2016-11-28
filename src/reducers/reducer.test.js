@@ -4,11 +4,11 @@ import chaiImmutable from 'chai-immutable';
 chai.use(chaiImmutable);
 
 
-import {List, Map, fromJS} from 'immutable';
+import { List, Map, fromJS } from 'immutable';
 
 import reducer from './reducer';
 
-import TestPosts from '../test_posts.json'
+import TestPosts from '../test_posts.json';
 
 it('handles state', () => {
   const initialState = Map();
@@ -16,14 +16,14 @@ it('handles state', () => {
     type: 'SET_STATE',
     state: Map({
       posts: List(TestPosts.data),
-      pages: Map(TestPosts.links)
-    })
+      pages: Map(TestPosts.links),
+    }),
   };
   const nextState = reducer(initialState, action);
 
   expect(nextState).to.equal(fromJS({
     posts: List(TestPosts.data),
-    pages: Map(TestPosts.links)
+    pages: Map(TestPosts.links),
   }));
 });
 
@@ -33,14 +33,14 @@ it('handles SET_STATE with plain JS payload', () => {
     type: 'SET_STATE',
     state: {
       posts: TestPosts.data,
-      pages: TestPosts.links
-    }
+      pages: TestPosts.links,
+    },
   };
   const nextState = reducer(initialState, action);
 
   expect(nextState).to.equal(fromJS({
     posts: TestPosts.data,
-    pages: TestPosts.links
+    pages: TestPosts.links,
   }));
 });
 
@@ -50,13 +50,13 @@ it('handles SET_STATE without initial state', () => {
     type: 'SET_STATE',
     state: Map({
       posts: List(TestPosts.data),
-      pages: Map(TestPosts.links)
-    })
+      pages: Map(TestPosts.links),
+    }),
   };
   const nextState = reducer(initialState, action);
 
   expect(nextState).to.equal(fromJS({
     posts: List(TestPosts.data),
-    pages: Map(TestPosts.links)
+    pages: Map(TestPosts.links),
   }));
 });
