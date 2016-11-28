@@ -1,6 +1,5 @@
 import React from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import _ from 'lodash'
 import {enablePropertyAccesor} from '../code/PropertyAccessors'
 
 class PureComponent extends React.Component {
