@@ -1,15 +1,16 @@
 import React from 'react'
-import PureComponent from './PureComponent'
-import Index from './blog/Index'
 import ThemeColor from './ThemeColor'
 import Header from './header/Header'
 import {connect} from 'react-redux';
+import {enablePropertyAccesor} from '../code/PropertyAccessors'
 
-class App extends PureComponent {
+class App extends React.Component {
   constructor(props) {
     super(props);
+    enablePropertyAccesor(this);
     this.properties({
-      themeColor: String
+      themeColor: String,
+      children: <span/>
     });
   }
   render() {
@@ -17,7 +18,7 @@ class App extends PureComponent {
       <div className="container">
         <ThemeColor name={this.themeColor}/>
         <Header />
-        <Index />
+        { this.props.children }
       </div>
     );
   }

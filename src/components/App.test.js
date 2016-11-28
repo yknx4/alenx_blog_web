@@ -14,6 +14,8 @@ import {
 
 it('renders without crashing', () => {
   const renderer = createRenderer();
-  renderer.render(<App title={Settings.title} menu={Settings.menu} themeColor={Settings.themeColor}/>);
+  renderer.render(
+    <App themeColor={Settings.themeColor} />
+  );
   const result = renderer.getRenderOutput();
 });
