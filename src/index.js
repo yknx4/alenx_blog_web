@@ -1,14 +1,22 @@
+// React Imports
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
 
+// Code Imports
 import {List, Map} from 'immutable';
-
-import TestPosts from './test_posts.json'
 import {createStore} from 'redux';
 import reducer from './reducers/reducer';
 import {Provider} from 'react-redux';
+import {Router, Route, browserHistory} from 'react-router';
+
+// Component Imports
+import App from './components/App';
+import Index from './components/blog/Index'
+
+// Data Imports
+import TestPosts from './test_posts.json'
 import Settings from './blog_settings.json'
+
 
 const store = createStore(reducer);
 store.dispatch({
@@ -20,9 +28,15 @@ store.dispatch({
   })
 });
 
+const routes = <Route component={App}>
+  <Route path="/" component={Index} />
+</Route>;
+
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Router history={browserHistory}>
+      {routes}
+    </Router>
   </Provider>,
   document.getElementById('root')
 );
