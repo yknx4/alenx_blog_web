@@ -1,13 +1,8 @@
-import { expect } from 'chai';
-import chai from 'chai';
+import chai, { expect } from 'chai';
 import chaiImmutable from 'chai-immutable';
-chai.use(chaiImmutable);
-
 import PureComponent from './PureComponent';
-import {
-  renderIntoDocument,
-  scryRenderedDOMComponentsWithTag,
-} from 'react-addons-test-utils';
+
+chai.use(chaiImmutable);
 
 it('fetches a prop', () => {
   const component = new PureComponent({ awesome: 'me!' });

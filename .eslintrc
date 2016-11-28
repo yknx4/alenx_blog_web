@@ -2,5 +2,13 @@
   "extends": [
     "react-app",
     "airbnb"
-  ]
+  ],
+  "plugins": [
+    "chai-expect"
+  ],
+  "globals": {
+    "chai": true,
+    "expect": true,
+    "it": true
+  }
 }

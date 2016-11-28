@@ -2,12 +2,12 @@ import React from 'react'
 import ThemeColor from './ThemeColor'
 import Header from './header/Header'
 import {connect} from 'react-redux';
-import {enablePropertyAccesor} from '../code/PropertyAccessors'
+import enablePropertyAccessors from '../code/PropertyAccessors'
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    enablePropertyAccesor(this);
+    enablePropertyAccessors(this);
     this.properties({
       themeColor: String,
       children: <span/>

@@ -1,3 +1,5 @@
+/* eslint react/jsx-filename-extension: "off" */
+/* eslint import/no-named-as-default: "off" */
 // React Imports
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -5,9 +7,9 @@ import ReactDOM from 'react-dom';
 // Code Imports
 import { List, Map } from 'immutable';
 import { createStore } from 'redux';
-import reducer from './reducers/reducer';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import reducer from './reducers/reducer';
 
 // Component Imports
 import App from './components/App';
@@ -21,10 +23,10 @@ import Settings from './blog_settings.json';
 const store = createStore(reducer);
 store.dispatch({
   type: 'SET_STATE',
-  state: Map({
-    posts: List(TestPosts.data),
-    pages: Map(TestPosts.links),
-    settings: Map(Settings),
+  state: new Map({
+    posts: new List(TestPosts.data),
+    pages: new Map(TestPosts.links),
+    settings: new Map(Settings),
   }),
 });
 

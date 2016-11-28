@@ -1,12 +1,14 @@
 
 function formatDate(date) {
-  date = new Date(date);
+  const parsedDate = new Date(date);
   const options = {
-    weekday: 'long', year: 'numeric', month: 'short',
+    weekday: 'long',
+    year: 'numeric',
+    month: 'short',
     day: 'numeric',
   };
 
-  return date.toLocaleDateString(navigatorLanguage(), options);
+  return parsedDate.toLocaleDateString(navigatorLanguage(), options);
 }
 
 function navigatorLanguage() {
