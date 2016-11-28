@@ -1,5 +1,5 @@
 import React from 'react'
-import PureComponent from './PureComponent'
+import PureComponent from '../PureComponent'
 
 class Badge extends PureComponent {
   render() {

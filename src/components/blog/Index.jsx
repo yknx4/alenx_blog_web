@@ -1,7 +1,7 @@
 import React from 'react';
 import Post from './IndexPost';
 import PureComponent from '../PureComponent'
-import Pagination from '../Pagination'
+import Pagination from './Pagination'
 import {connect} from 'react-redux';
 
 class Index extends PureComponent {

@@ -1,7 +1,7 @@
 import React from 'react'
-import PureComponent from './PureComponent'
+import PureComponent from '../PureComponent'
 import Helmet from 'react-helmet'
-import Title from './header/Title'
+import Title from './Title'
 import {Map} from 'immutable'
 import {connect} from 'react-redux';
 

@@ -5,16 +5,16 @@ chai.use(chaiImmutable);
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Pagination from './Pagination';
+import {Header} from './Header';
 import {
   renderIntoDocument,
-  scryRenderedDOMComponentsWithTag
+  scryRenderedDOMComponentsWithTag,
+  createRenderer
 } from 'react-addons-test-utils';
+import Settings from '../../blog_settings.json'
 
 it('renders without crashing', () => {
-  const links = require('../test_posts.json').links;
-  renderIntoDocument(
-    <Pagination pages={links}/>
-  );
+  const renderer = createRenderer();
+  renderer.render(<Header title={Settings.title}/>);
+  const result = renderer.getRenderOutput();
 });
-

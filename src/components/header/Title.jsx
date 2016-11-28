@@ -1,6 +1,6 @@
 import React from 'react'
 import PureComponent from '../PureComponent'
-import Badge from '../Badge'
+import Badge from './Badge'
 import Wrapper from '../Wrapper'
 import _ from 'lodash'
 import {connect} from 'react-redux';

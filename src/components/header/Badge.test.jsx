@@ -9,7 +9,7 @@ import {
   renderIntoDocument,
 } from 'react-addons-test-utils';
 
-import Settings from '../blog_settings.json'
+import Settings from '../../blog_settings.json'
 
 it('renders without crashing', () => {
   const badge = Settings.badges[0];
