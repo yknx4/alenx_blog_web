@@ -7,7 +7,7 @@ import {List, Map} from 'immutable';
 import {createStore} from 'redux';
 import reducer from './reducers/reducer';
 import {Provider} from 'react-redux';
-import {Router, Route, browserHistory} from 'react-router';
+import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 
 // Component Imports
 import App from './components/App';
@@ -28,8 +28,9 @@ store.dispatch({
   })
 });
 
-const routes = <Route component={App}>
-  <Route path="/" component={Index} />
+const routes = <Route path="/" component={App}>
+  <IndexRoute component={Index}/>
+  <Route path="/:page" component={Index} />
 </Route>;
 
 ReactDOM.render(

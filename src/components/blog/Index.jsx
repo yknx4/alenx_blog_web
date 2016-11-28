@@ -11,6 +11,10 @@ class Index extends PureComponent {
       posts: Array,
       pages: Array
     });
+
+    this.parameters({
+      page: 1
+    });
   }
   render() {
     return (
@@ -18,7 +22,7 @@ class Index extends PureComponent {
         {this.posts.map(post =>
           <Post key={post.id} post={post} />
         )}
-        <Pagination pages={this.pages} />
+        <Pagination page={this.page} pages={this.pages} />
       </section>
     );
   }
