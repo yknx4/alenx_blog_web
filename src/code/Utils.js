@@ -18,8 +18,8 @@ function navigatorLanguage() {
          navigator.userLanguage; // IE <= 10
 }
 
-function isMainPage(mainPathname="/") {
-  return window.location.pathname === mainPathname;
+function isMainPage() {
+  return !(window.location.pathname.includes('posts') || window.location.pathname.includes('pages'));
 }
 
 export { formatDate, navigatorLanguage, isMainPage };

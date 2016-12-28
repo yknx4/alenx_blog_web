@@ -5,6 +5,7 @@ import Title from './Title'
 import {Map} from 'immutable'
 import {connect} from 'react-redux';
 import {isMainPage} from '../../code/Utils'
+import Settings from '../../blog_settings.json'
 
 class Header extends PureComponent {
   constructor(props) {
@@ -21,7 +22,7 @@ class Header extends PureComponent {
           <nav>
             <ul>
               { this.menu.map(item =>
-                <li key={item.id}><a href={item.url}>{item.name}</a></li>
+                <li key={item.id}><a href={Settings.baseurl + item.url}>{item.name}</a></li>
               )}
             </ul>
           </nav>

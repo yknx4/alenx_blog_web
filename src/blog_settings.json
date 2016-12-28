@@ -1,5 +1,5 @@
 {
-  "baseurl": "//yknx4.github.io/blog",
+  "baseurl": "//127.0.0.1:3000/",
   "title": "[ Y k N x ]",
   "subtitle": "4",
   "tagline": "<bold>Life</bold><small>Thoughts, </small><bold>Social</bold><small>Criticism</small><small>, and some </small><bold>Software</bold><small>Development</small>",
@@ -69,7 +69,7 @@
     {
       "id": "home",
       "name": "home",
-      "url": "/blog"
+      "url": ""
     },
     {
       "id": "categories",
@@ -84,7 +84,7 @@
     {
       "id": "about",
       "name": "about",
-      "url": "about/"
+      "url": "pages/about/"
     },
     {
       "id": "pro",

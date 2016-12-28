@@ -8,7 +8,7 @@ import Settings from "../../blog_settings.json"
 class Post extends PureComponent {
   constructor(props) {
     super(props);
-    this.property('post', {attributes: {}})
+    this.property('post', {attributes: {}});
   }
   render() {
     const post = this.post;
