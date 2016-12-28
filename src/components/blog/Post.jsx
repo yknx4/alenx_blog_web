@@ -2,6 +2,7 @@ import React from 'react'
 import PureComponent from '../PureComponent'
 import {connect} from 'react-redux';
 import ReactMarkdown from "react-markdown";
+import Settings from "../../blog_settings.json"
 
 
 class Post extends PureComponent {
@@ -12,13 +13,14 @@ class Post extends PureComponent {
   render() {
     const post = this.post;
     const post_attributes = post.attributes;
+    const permalink = post_attributes['legacy-permalink'] || `http:${Settings.baseurl}${post.links.self}`;
     // post.attributes.body = "# Header \n## Header 2\n Holi";
     return (
         <article className="article-content">
           <ReactMarkdown source={post.attributes.body} skipHtml={true} />
           <section className="article-social">
             <section className="article-social-info">
-              <div className="fb-like pull-right" data-href='http:{{.Permalink}}' data-layout="button_count" data-action="like" data-show-faces="false" data-share="true">
+              <div className="fb-like pull-right" data-href={permalink} data-layout="button_count" data-action="like" data-show-faces="false" data-share="true">
               </div>
               <div className="pull-left">
                 <span className="f-post-tags">
@@ -31,7 +33,7 @@ class Post extends PureComponent {
                 </span>
               </div>
             </section>
-            <div className="fb-comments" data-href='http:{{.Permalink}}' data-width="100%"  data-numposts="5">
+            <div className="fb-comments" data-href={permalink} data-width="100%"  data-numposts="5">
             </div>
           </section>
         </article>
