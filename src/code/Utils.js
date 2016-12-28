@@ -18,4 +18,8 @@ function navigatorLanguage() {
          navigator.userLanguage; // IE <= 10
 }
 
-export { formatDate, navigatorLanguage };
+function isMainPage(mainPathname="/") {
+  return window.location.pathname === mainPathname;
+}
+
+export { formatDate, navigatorLanguage, isMainPage };

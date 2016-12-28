@@ -14,6 +14,7 @@ import reducer from './reducers/reducer';
 // Component Imports
 import App from './components/App';
 import Index from './components/blog/Index';
+import Post from './components/blog/Post'
 
 // Data Imports
 import TestPosts from './test_posts.json';
@@ -21,19 +22,25 @@ import Settings from './blog_settings.json';
 
 
 const store = createStore(reducer);
+const post = TestPosts.data[0];
+post.attributes.type = "post";
 store.dispatch({
   type: 'SET_STATE',
   state: new Map({
     posts: new List(TestPosts.data),
     pages: new Map(TestPosts.links),
     settings: new Map(Settings),
+    post: post
   }),
 });
 
-const routes = (<Route path="/" component={App}>
-  <IndexRoute component={Index} />
-  <Route path="/:page" component={Index} />
-</Route>);
+const routes = (
+  <Route path="/" component={App}>
+    <IndexRoute component={Index} />
+    <Route path="/:page" component={Index} />
+    <Route path="/posts/:id" component={Post} />
+  </Route>
+);
 
 ReactDOM.render(
   <Provider store={store}>

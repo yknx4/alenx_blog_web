@@ -4,6 +4,7 @@ import Helmet from 'react-helmet'
 import Title from './Title'
 import {Map} from 'immutable'
 import {connect} from 'react-redux';
+import {isMainPage} from '../../code/Utils'
 
 class Header extends PureComponent {
   constructor(props) {
@@ -34,7 +35,7 @@ function mapStateToProps(state) {
   const settings = state.get('settings');
   const post = state.get('post') || new Map();
   return {
-    title: post.get('title') || settings.get("title"),
+    title: isMainPage() ? settings.get("title") : post.attributes.title,
     menu: settings.get("menu")
   };
 }
