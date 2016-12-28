@@ -24,7 +24,7 @@ class Post extends PureComponent {
               </div>
               <div className="pull-left">
                 <span className="f-post-tags">
-                  <a href="/tags"><i className="fa fa-tag"></i></a>
+                  <a href="/tags"><i className="fa fa-tag"/></a>
                   { post_attributes['tag-ids'].map( tag_id =>
                     <a className='post-tag' key={tag_id} href={`/tags/${tag_id}`}>
                       {tag_id},
