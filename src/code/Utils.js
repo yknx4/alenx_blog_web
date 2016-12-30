@@ -29,8 +29,14 @@ const defaultState = fromJS(mutableDefaultState);
 const immutableizeReducer = reducer => (state = new Map(), action) =>
   fromJS(reducer(state.toJS(), action));
 
+function immutableizeMiddleware(middleware) {
+  return function ({dispatch, getState}) {
+    return middleware({dispatch, getState: () => { return getState().toJS(); }});
+  }
+}
+
 function nodeEnvironment() {
   return process.env.NODE_ENV;
 }
 
-export { formatDate, navigatorLanguage, isMainPage, immutableizeReducer, mutableDefaultState, defaultState, nodeEnvironment };
+export { formatDate, navigatorLanguage, isMainPage, immutableizeReducer, immutableizeMiddleware, mutableDefaultState, defaultState, nodeEnvironment };

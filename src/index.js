@@ -11,8 +11,9 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import reducer from './reducers/reducer';
-import setupApi from  './code/setupApi'
-import { defaultState } from './code/Utils'
+import setupApi from  './api/setupApi'
+import ApiActions from './api/ApiActions'
+import { defaultState, immutableizeMiddleware } from './code/Utils'
 
 // Component Imports
 import App from './components/App';
@@ -24,11 +25,10 @@ import Wrapper from './components/Wrapper'
 import TestPosts from './test_posts.json';
 import Settings from './blog_settings.json';
 
-
 const store = createStore(
   reducer,
   defaultState,
-  applyMiddleware(thunk)
+  applyMiddleware(immutableizeMiddleware(thunk))
 );
 const post = TestPosts.data[0];
 const page = TestPosts.data[1];
@@ -45,11 +45,12 @@ store.dispatch({
   }),
 });
 
-setupApi(store.dispatch);
+setupApi(store.dispatch, store.getState);
+const apiActions = new ApiActions(store.dispatch);
 
 const routes = (
   <Route path="/" component={App}>
-    <IndexRoute component={Index} />
+    <IndexRoute component={Index} onEnter={() => { apiActions.fetchPosts(); }}/>
     <Route path="/categories/" component={Wrapper} />
     <Route path="/tags/" component={Wrapper} />
     <Route path="/:page" component={Index} />

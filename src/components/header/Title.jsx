@@ -70,7 +70,7 @@ class Title extends PureComponent {
 
 function mapStateToProps(state) {
   const settings = state.getIn(['app', 'settings']);
-  const post = state.get('post');
+  const post = state.get('post') || {attributes:{date:""}};
   return {
     title: isMainPage()? settings.get("title") : post.attributes.title,
     subtitle: settings.get("subtitle"),
