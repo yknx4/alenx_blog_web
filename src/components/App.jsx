@@ -25,7 +25,7 @@ class App extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const settings = state.get('settings');
+  const settings = state.getIn(['app', 'settings']);
   return {
     themeColor: settings.get("themeColor"),
   };

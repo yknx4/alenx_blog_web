@@ -29,4 +29,8 @@ const defaultState = fromJS(mutableDefaultState);
 const immutableizeReducer = reducer => (state = new Map(), action) =>
   fromJS(reducer(state.toJS(), action));
 
-export { formatDate, navigatorLanguage, isMainPage, immutableizeReducer, mutableDefaultState, defaultState };
+function nodeEnvironment() {
+  return process.env.NODE_ENV;
+}
+
+export { formatDate, navigatorLanguage, isMainPage, immutableizeReducer, mutableDefaultState, defaultState, nodeEnvironment };

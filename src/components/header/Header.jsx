@@ -33,7 +33,7 @@ class Header extends PureComponent {
 }
 
 function mapStateToProps(state) {
-  const settings = state.get('settings');
+  const settings = state.getIn(['app', 'settings']);
   const post = state.get('post') || new Map();
   return {
     title: isMainPage() ? settings.get("title") : post.attributes.title,

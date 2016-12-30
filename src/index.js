@@ -6,10 +6,13 @@ import ReactDOM from 'react-dom';
 
 // Code Imports
 import { List, Map } from 'immutable';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import reducer from './reducers/reducer';
+import setupApi from  './code/setupApi'
+import { defaultState } from './code/Utils'
 
 // Component Imports
 import App from './components/App';
@@ -22,7 +25,11 @@ import TestPosts from './test_posts.json';
 import Settings from './blog_settings.json';
 
 
-const store = createStore(reducer);
+const store = createStore(
+  reducer,
+  defaultState,
+  applyMiddleware(thunk)
+);
 const post = TestPosts.data[0];
 const page = TestPosts.data[1];
 post.attributes.type = "post";
@@ -37,6 +44,8 @@ store.dispatch({
     page: page
   }),
 });
+
+setupApi(store.dispatch);
 
 const routes = (
   <Route path="/" component={App}>
