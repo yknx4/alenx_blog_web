@@ -53,7 +53,7 @@ const routes = (
     <IndexRoute component={Index} onEnter={() => { apiActions.fetchPosts(); }}/>
     <Route path="/categories/" component={Wrapper} />
     <Route path="/tags/" component={Wrapper} />
-    <Route path="/:page" component={Index} />
+    <Route path="/:page" component={Index} onEnter={(opts) => { const page = parseInt(opts.params.page) || 1; apiActions.fetchPosts(page); }}/>
     <Route path="/posts/:id" component={Post} />
     <Route path="/pages/:name" component={Post} />
   </Route>
