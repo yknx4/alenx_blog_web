@@ -7,6 +7,8 @@ export default class ApiActions {
 
   fetchPosts(page=1) {
     console.log(`Fetching page ${page} of posts`);
-    this.dispatch(readEndpoint(`pages?_page=${page}`))
+    const promise = readEndpoint(`posts?_page=${page}`);
+    this.dispatch(promise);
+    return promise;
   }
 }

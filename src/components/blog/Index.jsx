@@ -2,14 +2,16 @@ import React from 'react';
 import Post from './IndexPost';
 import PureComponent from '../PureComponent'
 import Pagination from './Pagination'
-import {connect} from 'react-redux';
+import _ from 'lodash'
+import {connect} from 'react-redux'
+import {Seq} from 'immutable'
 
 class Index extends PureComponent {
   constructor(props) {
     super(props);
     this.properties({
-      posts: Array,
-      pages: Array
+      posts: Seq,
+      pages: Seq
     });
 
     this.parameters({
@@ -19,7 +21,7 @@ class Index extends PureComponent {
   render() {
     return (
       <section id="article-listing" >
-        {this.posts.map(post =>
+        {this.posts.toJS().map(post =>
           <Post key={post.id} post={post} />
         )}
         <Pagination page={this.page} pages={this.pages} />
@@ -29,9 +31,10 @@ class Index extends PureComponent {
 }
 
 function mapStateToProps(state) {
+  const api = state.get('api');
   return {
-    posts: state.get('posts'),
-    pages: state.get('pages')
+    posts: api.getIn(['posts', 'data']),
+    pages: api.get('pages')
   };
 }
 
