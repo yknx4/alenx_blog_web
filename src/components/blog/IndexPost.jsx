@@ -2,6 +2,7 @@ import React from 'react'
 import PureComponent from '../PureComponent'
 import readingTime from 'reading-time'
 import {formatDate} from '../../code/Utils'
+import ReactMarkdown from "react-markdown";
 
 class IndexPost extends PureComponent {
   constructor(props) {
@@ -27,7 +28,9 @@ class IndexPost extends PureComponent {
           </span>
           &middot; <strong>{ readingTime(post_attributes.body).text } reading time</strong>
         </p>
-        <p className="article-summary">{ post_attributes.excerpt }</p>
+        <p className="article-summary">
+          <ReactMarkdown source={post.attributes.excerpt} skipHtml={true} />
+        </p>
         { this.hasReadMore() &&
           <a href={post.links.self}><p className="article-read-more">Read more &rarr;</p></a>
         }
