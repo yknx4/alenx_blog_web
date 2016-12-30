@@ -6,6 +6,13 @@ import TestPosts from '../test_posts.json';
 
 chai.use(chaiImmutable);
 
+function defaultState(object) {
+  return fromJS({
+    app: object,
+    api: {}
+  });
+}
+
 it('handles state', () => {
   const initialState = new Map();
   const action = {
@@ -17,10 +24,12 @@ it('handles state', () => {
   };
   const nextState = reducer(initialState, action);
 
-  expect(nextState).to.equal(fromJS({
-    posts: new List(TestPosts.data),
-    pages: new Map(TestPosts.links),
-  }));
+  expect(nextState).to.equal(defaultState(
+    {
+        posts: new List(TestPosts.data),
+        pages: new Map(TestPosts.links),
+      }
+  ));
 });
 
 it('handles SET_STATE with plain JS payload', () => {
@@ -34,7 +43,7 @@ it('handles SET_STATE with plain JS payload', () => {
   };
   const nextState = reducer(initialState, action);
 
-  expect(nextState).to.equal(fromJS({
+  expect(nextState).to.equal(defaultState({
     posts: TestPosts.data,
     pages: TestPosts.links,
   }));
@@ -51,7 +60,7 @@ it('handles SET_STATE without initial state', () => {
   };
   const nextState = reducer(initialState, action);
 
-  expect(nextState).to.equal(fromJS({
+  expect(nextState).to.equal(defaultState({
     posts: new List(TestPosts.data),
     pages: new Map(TestPosts.links),
   }));

@@ -1,3 +1,4 @@
+import {Map, fromJS} from 'immutable';
 
 function formatDate(date) {
   const parsedDate = new Date(date);
@@ -22,4 +23,10 @@ function isMainPage() {
   return !(window.location.pathname.includes('posts') || window.location.pathname.includes('pages'));
 }
 
-export { formatDate, navigatorLanguage, isMainPage };
+const mutableDefaultState = {api: {}, app: {}};
+const defaultState = fromJS(mutableDefaultState);
+
+const immutableizeReducer = reducer => (state = new Map(), action) =>
+  fromJS(reducer(state.toJS(), action));
+
+export { formatDate, navigatorLanguage, isMainPage, immutableizeReducer, mutableDefaultState, defaultState };

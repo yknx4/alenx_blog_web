@@ -1,14 +1,9 @@
-import { Map } from 'immutable';
+import { combineReducers } from 'redux-immutable';
+import { reducer as api } from 'redux-json-api';
+import { reducer as app } from './AppReducer'
+import { immutableizeReducer } from '../code/Utils'
 
-function setState(state, newState) {
-  return state.merge(newState);
-}
 
-export default function (state = new Map(), action) {
-  switch (action.type) {
-    case 'SET_STATE':
-      return setState(state, action.state);
-    default:
-      return state;
-  }
-}
+export default combineReducers({
+  api: immutableizeReducer(api), app
+});
