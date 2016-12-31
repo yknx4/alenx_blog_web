@@ -26,8 +26,16 @@ function isMainPage() {
 const mutableDefaultState = {api: {}, app: {}};
 const defaultState = fromJS(mutableDefaultState);
 
-const immutableizeReducer = reducer => (state = new Map(), action) =>
-  fromJS(reducer(state.toJS(), action));
+const immutableizeReducer = reducer => (state = new Map(), action) => {
+  const newAction = action;
+  let newState = state.toJS();
+  if(newAction.state && newAction.state.toJS) {
+    newAction.state = newAction.state.toJS();
+  }
+  newState = state.merge(fromJS(reducer(newState, newAction)));
+  return newState;
+};
+
 
 function immutableizeMiddleware(middleware) {
   return function ({dispatch, getState}) {
