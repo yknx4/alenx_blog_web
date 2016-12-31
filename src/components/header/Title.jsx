@@ -5,6 +5,7 @@ import Wrapper from '../Wrapper'
 import {connect} from 'react-redux';
 import {formatDate, isMainPage} from '../../code/Utils'
 import StateHelper from '../../code/StateHelper'
+import { List } from 'immutable'
 
 const MAIN_TYPE = "main";
 const POST_TYPE = "posts";
@@ -71,6 +72,13 @@ class Title extends PureComponent {
     return this.type === type;
   }
 }
+
+Title.propTypes = {
+  badges: React.PropTypes.object
+};
+Title.defaultProps = {
+  badges: new List()
+};
 
 function mapStateToProps(state) {
   const settings = state.getIn(['app', 'settings']);
