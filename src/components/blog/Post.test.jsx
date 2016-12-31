@@ -17,14 +17,14 @@ import {
 import {Post} from './Post';
 
 // Extra Imports
-import {formatDate} from '../../code/Utils'
 import posts from '../../test_posts.json'
+import {fromJS} from 'immutable'
 const post = posts.data[0];
 
 function renderPost(_post) {
   _post = _post || post;
   return renderIntoDocument(
-    <Post post={_post}/>
+    <Post post={fromJS(_post)}/>
   );
 }
 

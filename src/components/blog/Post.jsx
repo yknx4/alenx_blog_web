@@ -7,6 +7,7 @@ import Spinner from 'react-spinkit'
 import _ from 'lodash'
 import StateHelper from '../../code/StateHelper'
 import DispatchHelper from '../../code/DispatchHelper'
+import {Map} from 'immutable'
 
 
 class Post extends PureComponent {
@@ -21,7 +22,6 @@ class Post extends PureComponent {
     if (_.isEmpty(post)) return <div style={{margin: 'auto'}}> <Spinner spinnerName="wave" /> </div>;
     const post_attributes = post.attributes;
     const permalink = post_attributes['legacy-permalink'] || `http:${Settings.baseurl}${post.links.self.substring(1)}`;
-    console.log(permalink);
     return (
         <article className="article-content">
           <ReactMarkdown source={post.attributes.body} skipHtml={true} />
@@ -48,10 +48,12 @@ class Post extends PureComponent {
   }
 }
 Post.propTypes = {
-  setCurrentId: React.PropTypes.func
+  setCurrentId: React.PropTypes.func,
+  post: React.PropTypes.object
 };
 Post.defaultProps = {
-  setCurrentId: _.noop
+  setCurrentId: _.noop,
+  post: new Map()
 };
 
 
