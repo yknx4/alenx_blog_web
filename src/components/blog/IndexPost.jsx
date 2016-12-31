@@ -4,6 +4,7 @@ import readingTime from 'reading-time'
 import {formatDate} from '../../code/Utils'
 import ReactMarkdown from "react-markdown";
 import { Link } from 'react-router'
+import Author from './Author'
 
 
 class IndexPost extends PureComponent {
@@ -21,7 +22,7 @@ class IndexPost extends PureComponent {
       <article>
         <h1 className="article-title"><Link to={post.links.self}>{post_attributes.title}</Link></h1>
         <p className="article-info">
-          on <strong>{formatDate(post_attributes['inserted-at'])}</strong> by <strong>Placeholder Author</strong>
+          on <strong>{formatDate(post_attributes['inserted-at'])}</strong> by <strong><Author id={post_attributes['user-id']}/></strong>
           &middot;
           <span className="f-post-tags"><a href="/tags"><i className="fa fa-tag"></i></a>
             { post_attributes['tag-ids'].map( tag_id =>

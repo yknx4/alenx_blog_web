@@ -6,10 +6,16 @@ export default class StateHelper {
     this.state = state;
   }
 
+  getUser(id, notFoundValue = new Map()) {
+    if (_.isUndefined(id)) return notFoundValue;
+    const users = this.state.getIn(['api', 'users', 'data'], new List());
+    return users.find((v) => {return v.get('id') == id}) || notFoundValue;
+  }
+
   getPost(id, notFoundValue = new Map()) {
     if (_.isUndefined(id)) return notFoundValue;
     const posts = this.state.getIn(['api', 'posts', 'data'], new List());
-    return posts.find((v) => {return v.get('id') === id}) || notFoundValue;
+    return posts.find((v) => {return v.get('id') == id}) || notFoundValue;
   }
 
   getCurrentPost(notFoundValue = new Map()) {
