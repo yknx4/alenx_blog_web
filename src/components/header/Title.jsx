@@ -4,10 +4,11 @@ import Badge from './Badge'
 import Wrapper from '../Wrapper'
 import {connect} from 'react-redux';
 import {formatDate, isMainPage} from '../../code/Utils'
+import StateHelper from '../../code/StateHelper'
 
 const MAIN_TYPE = "main";
-const POST_TYPE = "post";
-const PAGE_TYPE = "page";
+const POST_TYPE = "posts";
+const PAGE_TYPE = "pages";
 
 class Title extends PureComponent {
   constructor(props) {
@@ -16,10 +17,13 @@ class Title extends PureComponent {
       title: String,
       subtitle: String,
       tagline: String,
-      badges: Array,
       date: Date,
       type: MAIN_TYPE
     });
+  }
+
+  get badges() {
+    return this.props.badges.toJS();
   }
 
   get pageTitle() {
@@ -70,14 +74,15 @@ class Title extends PureComponent {
 
 function mapStateToProps(state) {
   const settings = state.getIn(['app', 'settings']);
-  const post = state.get('post') || {attributes:{date:""}};
+  const stateHelper = new StateHelper(state);
+  const post = stateHelper.getCurrentPost();
   return {
-    title: isMainPage()? settings.get("title") : post.attributes.title,
+    title: isMainPage()? settings.get("title") : post.getIn(['attributes', 'title'], ""),
     subtitle: settings.get("subtitle"),
     tagline: settings.get("tagline"),
     badges: settings.get("badges"),
-    date: post.attributes.date,
-    type: isMainPage()? 'main' : post.attributes.type
+    date: post.getIn(['attributes', 'inserted-at'], new Date()),
+    type: isMainPage()? 'main' : post.get("type", "main")
   };
 }
 const ConnectedTitle = connect(mapStateToProps)(Title);

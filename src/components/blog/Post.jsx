@@ -3,19 +3,22 @@ import PureComponent from '../PureComponent'
 import {connect} from 'react-redux';
 import ReactMarkdown from "react-markdown";
 import Settings from "../../blog_settings.json"
-import { List, Map } from 'immutable'
 import Spinner from 'react-spinkit'
 import _ from 'lodash'
+import StateHelper from '../../code/StateHelper'
+import DispatchHelper from '../../code/DispatchHelper'
 
 
 class Post extends PureComponent {
   get post() {
     return this.props.post.toJS();
   }
+  componentDidMount() {
+    this.props.setCurrentId();
+  }
   render() {
     const post = this.post;
-    if (_.isEmpty(post)) return <Spinner spinnerName="wave" />;
-
+    if (_.isEmpty(post)) return <div style={{margin: 'auto'}}> <Spinner spinnerName="wave" /> </div>;
     const post_attributes = post.attributes;
     const permalink = post_attributes['legacy-permalink'] || `http:${Settings.baseurl}${post.links.self.substring(1)}`;
     console.log(permalink);
@@ -44,17 +47,31 @@ class Post extends PureComponent {
     );
   }
 }
+Post.propTypes = {
+  setCurrentId: React.PropTypes.func
+};
+Post.defaultProps = {
+  setCurrentId: _.noop
+};
 
 
 function mapStateToProps(state, props) {
   const id = props.params.id;
-  const posts = state.getIn(['api', 'posts', 'data'], new List());
+  const stateHelper = new StateHelper(state);
   return {
-    post: posts.find((v) => {return v.get('id') === id}) || new Map()
+    post: stateHelper.getPost(id)
   };
 }
 
-const ConnectedPost = connect(mapStateToProps)(Post);
+function mapDispatchToProps(dispatch, props) {
+  const id = props.params.id;
+  const dispatchHelper = new DispatchHelper(dispatch);
+  return {
+    setCurrentId: dispatchHelper.setCurrentId.bind(dispatchHelper, id)
+  }
+}
+
+const ConnectedPost = connect(mapStateToProps, mapDispatchToProps)(Post);
 
 export default ConnectedPost
 export {Post}

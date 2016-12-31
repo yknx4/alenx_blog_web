@@ -6,14 +6,18 @@ import {Map} from 'immutable'
 import {connect} from 'react-redux';
 import {isMainPage} from '../../code/Utils'
 import Settings from '../../blog_settings.json'
+import StateHelper from '../../code/StateHelper'
+import _ from 'lodash'
 
 class Header extends PureComponent {
   constructor(props) {
     super(props);
     this.properties({
-      menu: Array,
       title: String
     });
+  }
+  get menu() {
+    return this.props.menu.toJS();
   }
   render() {
     return (
@@ -34,11 +38,10 @@ class Header extends PureComponent {
 
 function mapStateToProps(state) {
   const settings = state.getIn(['app', 'settings']);
-  // debugger
-  const post = state.get('post') || new Map();
+  const stateHelper = new StateHelper(state);
+  const post = stateHelper.getCurrentPost();
   return {
-    // title: isMainPage() ? settings.get("title") : post.attributes.title,
-    title: "asd",
+    title: isMainPage()? settings.get("title") : post.getIn(['attributes', 'title'], ""),
     menu: settings.get("menu")
   };
 }
