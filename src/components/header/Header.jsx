@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 import {isMainPage} from '../../code/Utils'
 import Settings from '../../blog_settings.json'
 import StateHelper from '../../code/StateHelper'
-import _ from 'lodash'
+import ImmutablePropTypes from "react-immutable-proptypes";
 
 class Header extends PureComponent {
   constructor(props) {
@@ -37,7 +37,7 @@ class Header extends PureComponent {
 }
 
 Header.propTypes = {
-  menu: React.PropTypes.object
+  menu: ImmutablePropTypes.list
 };
 Header.defaultProps = {
   menu: new List()

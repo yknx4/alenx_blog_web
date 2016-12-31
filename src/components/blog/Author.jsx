@@ -11,7 +11,7 @@ class Author extends PureComponent {
 
 Author.propTypes = {
   name: React.PropTypes.string,
-  id: React.PropTypes.string.required
+  id: React.PropTypes.string.isRequired
 };
 Author.defaultProps = {
   name: ""

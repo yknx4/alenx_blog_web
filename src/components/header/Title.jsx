@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {formatDate, isMainPage} from '../../code/Utils'
 import StateHelper from '../../code/StateHelper'
 import { List } from 'immutable'
+import ImmutablePropTypes from "react-immutable-proptypes"
 
 const MAIN_TYPE = "main";
 const POST_TYPE = "posts";
@@ -74,7 +75,7 @@ class Title extends PureComponent {
 }
 
 Title.propTypes = {
-  badges: React.PropTypes.object
+  badges: ImmutablePropTypes.list
 };
 Title.defaultProps = {
   badges: new List()

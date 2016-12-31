@@ -8,6 +8,7 @@ import _ from 'lodash'
 import StateHelper from '../../code/StateHelper'
 import DispatchHelper from '../../code/DispatchHelper'
 import {Map} from 'immutable'
+import ImmutablePropTypes from "react-immutable-proptypes";
 
 
 class Post extends PureComponent {
@@ -49,7 +50,7 @@ class Post extends PureComponent {
 }
 Post.propTypes = {
   setCurrentId: React.PropTypes.func,
-  post: React.PropTypes.object
+  post: ImmutablePropTypes.map.isRequired
 };
 Post.defaultProps = {
   setCurrentId: _.noop,
