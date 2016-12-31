@@ -10,6 +10,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import {syncHistoryWithStore} from 'react-router-redux';
 import reducer from './reducers/reducer';
 import setupApi from  './api/setupApi'
 import ApiActions from './api/ApiActions'
@@ -37,6 +38,12 @@ store.dispatch({
   }),
 });
 
+const history = syncHistoryWithStore(browserHistory, store, {
+  selectLocationState (state) {
+    return state.get('routing').toObject();
+  }
+});
+
 setupApi(store.dispatch, store.getState);
 const apiActions = new ApiActions(store.dispatch);
 
@@ -58,7 +65,7 @@ const routes = (
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory}>
+    <Router history={history}>
       {routes}
     </Router>
   </Provider>,
