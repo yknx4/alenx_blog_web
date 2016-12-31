@@ -45,19 +45,20 @@ const history = syncHistoryWithStore(browserHistory, store, {
 });
 
 setupApi(store.dispatch, store.getState);
-const apiActions = new ApiActions(store.dispatch);
+ApiActions.fetchMany(store.dispatch, ApiActions.type.Users, ApiActions.type.Categories, ApiActions.type.Tags);
+const postsActions = new ApiActions(store.dispatch, ApiActions.type.Posts);
 
 function openPost(options) {
   const id = parseInt(options.params.id, 10);
-  apiActions.fetchPost(id);
+  postsActions.fetch(id);
 }
 
 const routes = (
   <Route path="/" component={App}>
-    <IndexRoute component={Index} onEnter={() => { apiActions.fetchPosts(); }}/>
+    <IndexRoute component={Index} onEnter={() => { postsActions.fetchAll(); }}/>
     <Route path="/categories/" component={Wrapper} />
     <Route path="/tags/" component={Wrapper} />
-    <Route path="/:page" component={Index} onEnter={(opts) => { const page = parseInt(opts.params.page, 10) || 1; apiActions.fetchPosts(page); }}/>
+    <Route path="/:page" component={Index} onEnter={(opts) => { const page = parseInt(opts.params.page, 10) || 1; postsActions.fetchAll(page); }}/>
     <Route path="/posts/:id" component={Post} onEnter={openPost}/>
     <Route path="/pages/:name" component={Post} />
   </Route>

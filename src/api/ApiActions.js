@@ -1,21 +1,48 @@
 import { readEndpoint } from 'redux-json-api';
+import _ from 'lodash';
 
 export default class ApiActions {
-  constructor(dispatch) {
+  static type = {
+    Posts: "posts",
+    Tags: "tags",
+    Categories: "categories",
+    Pages: "users",
+    Users: 'users'
+  };
+
+  constructor(dispatch, type) {
     this.dispatch = dispatch;
+    this.type = type;
   }
 
-  fetchPosts(page=1) {
-    console.log(`Fetching page ${page} of posts`);
-    const promise = readEndpoint(`posts?_page=${page}`);
+  static fetchMany(dispatch, ...types) {
+    const apiAction = new ApiActions(dispatch);
+    types.forEach((type) => {
+      apiAction.type = type;
+      apiAction.fetchWhole();
+    });
+  }
+
+  fetchWhole() {
+    console.log(`Fetching ${this.type}`);
+    const promise = readEndpoint(this.type);
     this.dispatch(promise);
     return promise;
   }
 
-  fetchPost(id) {
-    console.log(`Fetching post ${id}`);
-    const promise = readEndpoint(`posts/${id}`);
+  fetchAll(page=1) {
+    console.log(`Fetching page ${page} of ${this.type}`);
+    const promise = readEndpoint(`${this.type}?_page=${page}`);
     this.dispatch(promise);
     return promise;
   }
+
+  fetch(id) {
+    console.log(`Fetching from ${this.type}: ${id}`);
+    const promise = readEndpoint(`${this.type}/${id}`);
+    this.dispatch(promise);
+    return promise;
+  }
+
+
 }
