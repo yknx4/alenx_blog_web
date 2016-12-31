@@ -1,4 +1,4 @@
-import {Map, fromJS} from 'immutable';
+import { Map, fromJS } from 'immutable';
 
 function formatDate(date) {
   const parsedDate = new Date(date);
@@ -23,13 +23,13 @@ function isMainPage() {
   return !(window.location.pathname.includes('posts') || window.location.pathname.includes('pages'));
 }
 
-const mutableDefaultState = {api: {}, app: {}};
+const mutableDefaultState = { api: {}, app: {} };
 const defaultState = fromJS(mutableDefaultState);
 
 const immutableizeReducer = reducer => (state = new Map(), action) => {
   const newAction = action;
   let newState = state.toJS();
-  if(newAction.state && newAction.state.toJS) {
+  if (newAction.state && newAction.state.toJS) {
     newAction.state = newAction.state.toJS();
   }
   newState = state.merge(fromJS(reducer(newState, newAction)));
@@ -38,9 +38,9 @@ const immutableizeReducer = reducer => (state = new Map(), action) => {
 
 
 function immutableizeMiddleware(middleware) {
-  return function ({dispatch, getState}) {
-    return middleware({dispatch, getState: () => { return getState().toJS(); }});
-  }
+  return function ({ dispatch, getState }) {
+    return middleware({ dispatch, getState: () => getState().toJS() });
+  };
 }
 
 function nodeEnvironment() {

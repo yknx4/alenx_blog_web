@@ -3,11 +3,11 @@ import _ from 'lodash';
 
 export default class ApiActions {
   static type = {
-    Posts: "posts",
-    Tags: "tags",
-    Categories: "categories",
-    Pages: "users",
-    Users: 'users'
+    Posts: 'posts',
+    Tags: 'tags',
+    Categories: 'categories',
+    Pages: 'users',
+    Users: 'users',
   };
 
   constructor(dispatch, type) {
@@ -30,7 +30,7 @@ export default class ApiActions {
     return promise;
   }
 
-  fetchAll(page=1) {
+  fetchAll(page = 1) {
     console.log(`Fetching page ${page} of ${this.type}`);
     const promise = readEndpoint(`${this.type}?_page=${page}`);
     this.dispatch(promise);

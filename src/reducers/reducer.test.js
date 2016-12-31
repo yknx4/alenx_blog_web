@@ -9,7 +9,7 @@ chai.use(chaiImmutable);
 function defaultState(object) {
   return fromJS({
     app: object,
-    api: {}
+    api: {},
   });
 }
 
@@ -26,9 +26,9 @@ it('handles state', () => {
 
   expect(nextState).to.equal(defaultState(
     {
-        posts: new List(TestPosts.data),
-        pages: new Map(TestPosts.links),
-      }
+      posts: new List(TestPosts.data),
+      pages: new Map(TestPosts.links),
+    },
   ));
 });
 

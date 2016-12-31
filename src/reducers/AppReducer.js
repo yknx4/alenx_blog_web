@@ -4,7 +4,7 @@ function setState(state, newState) {
   return state.merge(newState);
 }
 
-function reducer (state = new Map(), action) {
+function reducer(state = new Map(), action) {
   let finalState;
   switch (action.type) {
     case 'SET_STATE':
@@ -17,4 +17,4 @@ function reducer (state = new Map(), action) {
   return finalState;
 }
 
-export { reducer }
+export { reducer };

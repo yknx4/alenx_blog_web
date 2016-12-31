@@ -1,5 +1,5 @@
-import { Map, List } from 'immutable'
-import _ from 'lodash'
+import { Map, List } from 'immutable';
+import _ from 'lodash';
 
 export default class StateHelper {
   constructor(state) {
@@ -9,13 +9,13 @@ export default class StateHelper {
   getUser(id, notFoundValue = new Map()) {
     if (_.isUndefined(id)) return notFoundValue;
     const users = this.state.getIn(['api', 'users', 'data'], new List());
-    return users.find((v) => {return v.get('id') == id}) || notFoundValue;
+    return users.find(v => v.get('id') == id) || notFoundValue;
   }
 
   getPost(id, notFoundValue = new Map()) {
     if (_.isUndefined(id)) return notFoundValue;
     const posts = this.state.getIn(['api', 'posts', 'data'], new List());
-    return posts.find((v) => {return v.get('id') == id}) || notFoundValue;
+    return posts.find(v => v.get('id') == id) || notFoundValue;
   }
 
   getCurrentPost(notFoundValue = new Map()) {
