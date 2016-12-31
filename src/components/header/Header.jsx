@@ -2,7 +2,7 @@ import React from 'react'
 import PureComponent from '../PureComponent'
 import Helmet from 'react-helmet'
 import Title from './Title'
-import {Map} from 'immutable'
+import {List} from 'immutable'
 import {connect} from 'react-redux';
 import {isMainPage} from '../../code/Utils'
 import Settings from '../../blog_settings.json'
@@ -35,6 +35,13 @@ class Header extends PureComponent {
     );
   }
 }
+
+Header.propTypes = {
+  menu: React.PropTypes.object
+};
+Header.defaultProps = {
+  menu: new List()
+};
 
 function mapStateToProps(state) {
   const settings = state.getIn(['app', 'settings']);
