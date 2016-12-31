@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // Code Imports
-import { List, Map } from 'immutable';
+import { Map } from 'immutable';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
@@ -23,7 +23,6 @@ import Post from './components/blog/Post';
 import Wrapper from './components/Wrapper';
 
 // Data Imports
-import TestPosts from './test_posts.json';
 import Settings from './blog_settings.json';
 
 const store = createStore(
@@ -45,7 +44,13 @@ const history = syncHistoryWithStore(browserHistory, store, {
 });
 
 setupApi(store.dispatch, store.getState);
-ApiActions.fetchMany(store.dispatch, ApiActions.type.Users, ApiActions.type.Categories, ApiActions.type.Tags);
+ApiActions.fetchMany(
+  store.dispatch,
+  ApiActions.type.Users,
+  ApiActions.type.Categories,
+  ApiActions.type.Tags,
+);
+
 const postsActions = new ApiActions(store.dispatch, ApiActions.type.Posts);
 
 function openPost(options) {

@@ -17,4 +17,4 @@ function reducer(state = new Map(), action) {
   return finalState;
 }
 
-export { reducer };
+export default reducer;

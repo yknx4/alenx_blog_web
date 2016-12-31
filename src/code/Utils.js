@@ -38,13 +38,20 @@ const immutableizeReducer = reducer => (state = new Map(), action) => {
 
 
 function immutableizeMiddleware(middleware) {
-  return function ({ dispatch, getState }) {
-    return middleware({ dispatch, getState: () => getState().toJS() });
-  };
+  return ({ dispatch, getState }) => middleware({ dispatch, getState: () => getState().toJS() });
 }
 
 function nodeEnvironment() {
   return process.env.NODE_ENV;
 }
 
-export { formatDate, navigatorLanguage, isMainPage, immutableizeReducer, immutableizeMiddleware, mutableDefaultState, defaultState, nodeEnvironment };
+export {
+  formatDate,
+  navigatorLanguage,
+  isMainPage,
+  immutableizeReducer,
+  immutableizeMiddleware,
+  mutableDefaultState,
+  defaultState,
+  nodeEnvironment,
+};

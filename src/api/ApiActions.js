@@ -1,5 +1,5 @@
+/* eslint no-console: "off" */
 import { readEndpoint } from 'redux-json-api';
-import _ from 'lodash';
 
 export default class ApiActions {
   static type = {

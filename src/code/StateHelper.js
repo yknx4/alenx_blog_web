@@ -1,3 +1,4 @@
+/* eslint eqeqeq: "off" */
 import { Map, List } from 'immutable';
 import _ from 'lodash';
 

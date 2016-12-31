@@ -1,10 +1,9 @@
-import Settings from '../blog_settings.json';
 import { setEndpointHost, setEndpointPath } from 'redux-json-api';
+import Settings from '../blog_settings.json';
 import { nodeEnvironment } from '../code/Utils';
 
-export default function (dispatch, getState) {
+export default function (dispatch) {
   const endpoints = Settings.endpoints[nodeEnvironment()];
-  console.log('setting up api');
   dispatch(setEndpointHost(endpoints.baseApiUrl));
   dispatch(setEndpointPath(''));
 }
