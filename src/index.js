@@ -30,18 +30,10 @@ const store = createStore(
   defaultState,
   applyMiddleware(immutableizeMiddleware(thunk))
 );
-const post = TestPosts.data[0];
-const page = TestPosts.data[1];
-post.attributes.type = "post";
-page.attributes.type = "page";
 store.dispatch({
   type: 'SET_STATE',
   state: new Map({
-    posts: new List(TestPosts.data),
-    pages: new Map(TestPosts.links),
-    settings: new Map(Settings),
-    post: post,
-    page: page
+    settings: new Map(Settings)
   }),
 });
 
