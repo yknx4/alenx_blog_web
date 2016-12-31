@@ -3,6 +3,8 @@ import PureComponent from '../PureComponent'
 import readingTime from 'reading-time'
 import {formatDate} from '../../code/Utils'
 import ReactMarkdown from "react-markdown";
+import { Link } from 'react-router'
+
 
 class IndexPost extends PureComponent {
   constructor(props) {
@@ -17,13 +19,13 @@ class IndexPost extends PureComponent {
     const post_attributes = post.attributes;
     return (
       <article>
-        <h1 className="article-title"><a href={post.links.self}>{post_attributes.title}</a></h1>
+        <h1 className="article-title"><Link to={post.links.self}>{post_attributes.title}</Link></h1>
         <p className="article-info">
           on <strong>{formatDate(post_attributes['inserted-at'])}</strong> by <strong>Placeholder Author</strong>
           &middot;
           <span className="f-post-tags"><a href="/tags"><i className="fa fa-tag"></i></a>
             { post_attributes['tag-ids'].map( tag_id =>
-              <a className='post-tag' key={tag_id} href={`/tags/${tag_id}`}>{tag_id}, </a>
+              <Link className='post-tag' key={tag_id} to={`/tags/${tag_id}`}>{tag_id}, </Link>
             )}
           </span>
           &middot; <strong>{ readingTime(post_attributes.body).text } reading time</strong>
@@ -36,7 +38,7 @@ class IndexPost extends PureComponent {
           renderers={{Heading: 'strong'}}
         />
         { this.hasReadMore() &&
-          <a href={post.links.self}><p className="article-read-more">Read more &rarr;</p></a>
+          <Link to={post.links.self}><p className="article-read-more">Read more &rarr;</p></Link>
         }
 
       </article>
