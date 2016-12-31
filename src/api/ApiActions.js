@@ -11,4 +11,11 @@ export default class ApiActions {
     this.dispatch(promise);
     return promise;
   }
+
+  fetchPost(id) {
+    console.log(`Fetching post ${id}`);
+    const promise = readEndpoint(`posts/${id}`);
+    this.dispatch(promise);
+    return promise;
+  }
 }

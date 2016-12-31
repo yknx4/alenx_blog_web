@@ -3,18 +3,22 @@ import PureComponent from '../PureComponent'
 import {connect} from 'react-redux';
 import ReactMarkdown from "react-markdown";
 import Settings from "../../blog_settings.json"
+import { List, Map } from 'immutable'
+import Spinner from 'react-spinkit'
+import _ from 'lodash'
 
 
 class Post extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.property('post', {attributes: {}});
+  get post() {
+    return this.props.post.toJS();
   }
   render() {
     const post = this.post;
+    if (_.isEmpty(post)) return <Spinner spinnerName="wave" />;
+
     const post_attributes = post.attributes;
-    const permalink = post_attributes['legacy-permalink'] || `http:${Settings.baseurl}${post.links.self}`;
-    // post.attributes.body = "# Header \n## Header 2\n Holi";
+    const permalink = post_attributes['legacy-permalink'] || `http:${Settings.baseurl}${post.links.self.substring(1)}`;
+    console.log(permalink);
     return (
         <article className="article-content">
           <ReactMarkdown source={post.attributes.body} skipHtml={true} />
@@ -42,9 +46,11 @@ class Post extends PureComponent {
 }
 
 
-function mapStateToProps(state) {
+function mapStateToProps(state, props) {
+  const id = props.params.id;
+  const posts = state.getIn(['api', 'posts', 'data'], new List());
   return {
-    post: state.get('post')
+    post: posts.find((v) => {return v.get('id') === id}) || new Map()
   };
 }
 

@@ -48,13 +48,18 @@ store.dispatch({
 setupApi(store.dispatch, store.getState);
 const apiActions = new ApiActions(store.dispatch);
 
+function openPost(options) {
+  const id = parseInt(options.params.id, 10);
+  apiActions.fetchPost(id);
+}
+
 const routes = (
   <Route path="/" component={App}>
     <IndexRoute component={Index} onEnter={() => { apiActions.fetchPosts(); }}/>
     <Route path="/categories/" component={Wrapper} />
     <Route path="/tags/" component={Wrapper} />
-    <Route path="/:page" component={Index} onEnter={(opts) => { const page = parseInt(opts.params.page) || 1; apiActions.fetchPosts(page); }}/>
-    <Route path="/posts/:id" component={Post} />
+    <Route path="/:page" component={Index} onEnter={(opts) => { const page = parseInt(opts.params.page, 10) || 1; apiActions.fetchPosts(page); }}/>
+    <Route path="/posts/:id" component={Post} onEnter={openPost}/>
     <Route path="/pages/:name" component={Post} />
   </Route>
 );

@@ -4,8 +4,6 @@ import readingTime from 'reading-time'
 import {formatDate} from '../../code/Utils'
 import ReactMarkdown from "react-markdown";
 
-debugger;
-
 class IndexPost extends PureComponent {
   constructor(props) {
     super(props);

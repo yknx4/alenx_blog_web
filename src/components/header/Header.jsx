@@ -18,7 +18,7 @@ class Header extends PureComponent {
   render() {
     return (
         <header>
-          <Helmet title={this.title}/>
+          <Helmet title={this.props.title}/>
           <nav>
             <ul>
               { this.menu.map(item =>
@@ -34,9 +34,11 @@ class Header extends PureComponent {
 
 function mapStateToProps(state) {
   const settings = state.getIn(['app', 'settings']);
+  // debugger
   const post = state.get('post') || new Map();
   return {
-    title: isMainPage() ? settings.get("title") : post.attributes.title,
+    // title: isMainPage() ? settings.get("title") : post.attributes.title,
+    title: "asd",
     menu: settings.get("menu")
   };
 }
