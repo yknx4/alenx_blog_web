@@ -5,12 +5,16 @@ function setState(state, newState) {
 }
 
 function reducer (state = new Map(), action) {
+  let finalState;
   switch (action.type) {
     case 'SET_STATE':
-      return setState(state, action.state);
+      finalState = setState(state, action.state);
+      break;
     default:
-      return state;
+      finalState = state;
+      break;
   }
+  return finalState;
 }
 
 export { reducer }
